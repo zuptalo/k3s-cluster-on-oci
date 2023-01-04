@@ -41,5 +41,5 @@ variable "ssh_authorized_keys" {
 
 locals {
   cidr_blocks            = ["10.0.0.0/24"]
-  ssh_managemnet_network = "217.208.59.5/32"
+  ssh_managemnet_network = "0.0.0.0/0"
 }

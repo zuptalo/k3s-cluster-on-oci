@@ -13,14 +13,6 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
-    env:
-      TF_VAR_COMPARTMENT_ID: ${{ secrets.TF_VAR_COMPARTMENT_ID }}
-      TF_VAR_REGION: ${{ secrets.TF_VAR_REGION }}
-      TF_VAR_TENANCY_OCID: ${{ secrets.TF_VAR_TENANCY_OCID }}
-      TF_VAR_USER_OCID: ${{ secrets.TF_VAR_USER_OCID }}
-      TF_VAR_FINGERPRINT: ${{ secrets.TF_VAR_FINGERPRINT }}
-      TF_VAR_PRIVATE_KEY: ${{ secrets.TF_VAR_PRIVATE_KEY }}
-      TF_VAR_SSH_AUTHORIZED_KEYS: ${{ secrets.TF_VAR_SSH_AUTHORIZED_KEYS }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -44,10 +36,10 @@ jobs:
 
       # Generates an execution plan for Terraform
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -var="TF_VAR_COMPARTMENT_ID=${{ secrets.TF_VAR_COMPARTMENT_ID }}" -var="TF_VAR_REGION=${{ secrets.TF_VAR_REGION }}" -var="TF_VAR_TENANCY_OCID=${{ secrets.TF_VAR_TENANCY_OCID }}" -var="TF_VAR_USER_OCID=${{ secrets.TF_VAR_USER_OCID }}" -var="TF_VAR_FINGERPRINT=${{ secrets.TF_VAR_FINGERPRINT }}" -var="TF_VAR_PRIVATE_KEY=${{ secrets.TF_VAR_PRIVATE_KEY }}" -var="TF_VAR_SSH_AUTHORIZED_KEYS=${{ secrets.TF_VAR_SSH_AUTHORIZED_KEYS }}" -input=false
 
         # On push to "main", build or change infrastructure according to Terraform configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
       - name: Terraform Apply
         if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -var="TF_VAR_COMPARTMENT_ID=${{ secrets.TF_VAR_COMPARTMENT_ID }}" -var="TF_VAR_REGION=${{ secrets.TF_VAR_REGION }}" -var="TF_VAR_TENANCY_OCID=${{ secrets.TF_VAR_TENANCY_OCID }}" -var="TF_VAR_USER_OCID=${{ secrets.TF_VAR_USER_OCID }}" -var="TF_VAR_FINGERPRINT=${{ secrets.TF_VAR_FINGERPRINT }}" -var="TF_VAR_PRIVATE_KEY=${{ secrets.TF_VAR_PRIVATE_KEY }}" -var="TF_VAR_SSH_AUTHORIZED_KEYS=${{ secrets.TF_VAR_SSH_AUTHORIZED_KEYS }}" -auto-approve -input=false
