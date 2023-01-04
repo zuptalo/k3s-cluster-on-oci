@@ -16,6 +16,7 @@ variable "private_key" {
 variable "private_key_password" {
   description = "Password for private key to use for signing"
   type        = string
+  default = ""
 }
 
 variable "region" {
