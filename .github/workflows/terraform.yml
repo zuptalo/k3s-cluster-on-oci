@@ -36,6 +36,9 @@ jobs:
           TF_VAR_FINGERPRINT: ${{ secrets.TF_VAR_FINGERPRINT }}
           TF_VAR_PRIVATE_KEY: ${{ secrets.TF_VAR_PRIVATE_KEY }}
           TF_VAR_SSH_AUTHORIZED_KEYS: ${{ secrets.TF_VAR_SSH_AUTHORIZED_KEYS }}
+        with:
+          envFile: '.github/tf.env'
+          expand: 'true'
         run: terraform init
 
       # Generates an execution plan for Terraform
@@ -48,6 +51,9 @@ jobs:
           TF_VAR_FINGERPRINT: ${{ secrets.TF_VAR_FINGERPRINT }}
           TF_VAR_PRIVATE_KEY: ${{ secrets.TF_VAR_PRIVATE_KEY }}
           TF_VAR_SSH_AUTHORIZED_KEYS: ${{ secrets.TF_VAR_SSH_AUTHORIZED_KEYS }}
+        with:
+          envFile: '.github/tf.env'
+          expand: 'true'
         run: terraform plan -input=false
 
         # On push to "main", build or change infrastructure according to Terraform configuration files
@@ -61,5 +67,8 @@ jobs:
           TF_VAR_FINGERPRINT: ${{ secrets.TF_VAR_FINGERPRINT }}
           TF_VAR_PRIVATE_KEY: ${{ secrets.TF_VAR_PRIVATE_KEY }}
           TF_VAR_SSH_AUTHORIZED_KEYS: ${{ secrets.TF_VAR_SSH_AUTHORIZED_KEYS }}
+        with:
+          envFile: '.github/tf.env'
+          expand: 'true'
         if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
