@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -17,4 +16,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run a one-line script
-        run: echo ${{ secrets.DUMMY_SECRET }}
+        run: |
+          echo "This is a simple test"
+          echo "This is an actual secret: ${{ secrets.DUMMY_SECRET }}"
+          echo "This is a non-existing secret: ${{ secrets.SMART_SECRET }}"
