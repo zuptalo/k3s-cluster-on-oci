@@ -37,3 +37,12 @@ terraform.rc
 # Ignore IDEA files
 k3s-on-oci.iml
 .idea
+
+.DS_Store
+.env
+*.terraform
+.tfplan
+*.hcl
+*.info
+*.tfstate.backup
+.history/
