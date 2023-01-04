@@ -5,14 +5,10 @@ on:
     branches: [ "main" ]
   pull_request:
 
-permissions:
-  contents: read
-
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -28,12 +24,10 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_wrapper: false
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        uses: hashicorp/setup-terraform@v2
         env:
           TF_VAR_COMPARTMENT_ID: ${{ secrets.TF_VAR_COMPARTMENT_ID }}
           TF_VAR_REGION: ${{ secrets.TF_VAR_REGION }}
@@ -46,7 +40,6 @@ jobs:
 
       # Generates an execution plan for Terraform
       - name: Terraform Plan
-        uses: hashicorp/setup-terraform@v2
         env:
           TF_VAR_COMPARTMENT_ID: ${{ secrets.TF_VAR_COMPARTMENT_ID }}
           TF_VAR_REGION: ${{ secrets.TF_VAR_REGION }}
@@ -60,7 +53,6 @@ jobs:
         # On push to "main", build or change infrastructure according to Terraform configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
       - name: Terraform Apply
-        uses: hashicorp/setup-terraform@v2
         env:
           TF_VAR_COMPARTMENT_ID: ${{ secrets.TF_VAR_COMPARTMENT_ID }}
           TF_VAR_REGION: ${{ secrets.TF_VAR_REGION }}
