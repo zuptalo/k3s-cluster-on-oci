@@ -4,11 +4,16 @@ terraform {
       source  = "oracle/oci"
       version = ">= 4.102.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.4.3"
+    }
+
   }
 }
 
 provider "oci" {
-  private_key_path = var.private_key
+  private_key_path     = var.private_key
   private_key_password = var.private_key_password
 }
 
