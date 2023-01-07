@@ -10,7 +10,6 @@ terraform {
 }
 
 provider "oci" {
-  pg_connection_str    = var.pg_connection_str
   private_key_path     = var.private_key
   private_key_password = var.private_key_password
 }
