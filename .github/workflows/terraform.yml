@@ -17,6 +17,7 @@ jobs:
       TF_VAR_fingerprint: ${{ secrets.TF_VAR_FINGERPRINT }}
       TF_VAR_private_key: ${{ secrets.TF_VAR_PRIVATE_KEY }}
       TF_VAR_ssh_authorized_keys: ${{ secrets.TF_VAR_SSH_AUTHORIZED_KEYS }}
+      TF_VAR_pg_connection_str: ${{ secrets.TF_VAR_PG_CONNECTION_STR }}
 
     steps:
       - name: Checkout

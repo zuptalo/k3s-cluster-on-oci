@@ -40,6 +40,11 @@ variable "ssh_authorized_keys" {
   type        = list(string)
 }
 
+variable "pg_connection_str" {
+  description = "Connection string for Postgres Backend"
+  type        = string
+}
+
 locals {
   cidr_blocks            = ["10.0.0.0/24"]
   ssh_managemnet_network = "0.0.0.0/0"
