@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
-    bucket                      = ${{ secrets.TF_VAR_BUCKET_NAME }}
+    bucket                      = "terraform-state"
     key                         = "terraform.tfstate"
-    region                      = ${{ secrets.TF_VAR_REGION }}
-    endpoint                    = ${{ secrets.TF_VAR_ENDPOINT }}
+    region                      = "eu-stockholm-1"
+    endpoint                    = "https://objectstorage.eu-stockholm-1.oraclecloud.com/p/clJVTe-qMGJ9FZk7yecOVrqJVYsx1FBBpgGzYd6iLOrb8iGC734G7ZoCa7CAZ4G5/n/axquvpqvm9ie/b/terraform-state/o/"
     skip_credentials_validation = true
     skip_get_ec2_platforms      = true
     skip_requesting_account_id  = true
@@ -15,7 +15,7 @@ terraform {
     preauthenticated_request {
       description  = "Terraform State Storage"
       access_type  = "ObjectReadWrite"
-      time_expires = "2030-12-31T00:00:00Z"
+      time_expires = "2030-12-31T23:59:00Z"
     }
   }
 }
