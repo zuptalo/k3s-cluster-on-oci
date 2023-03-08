@@ -4,9 +4,6 @@ terraform {
       source = "registry.terraform.io/hashicorp/oci"
     }
   }
-  backend "pg" {
-    conn_str = var.pg_connection_str
-  }
 }
 
 provider "oci" {
