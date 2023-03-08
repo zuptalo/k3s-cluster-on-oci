@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
-    bucket                      = var.bucket_name
+    bucket                      = ${{ secrets.TF_VAR_BUCKET_NAME }}
     key                         = "terraform.tfstate"
-    region                      = var.region
-    endpoint                    = var.endpoint
+    region                      = ${{ secrets.TF_VAR_REGION }}
+    endpoint                    = ${{ secrets.TF_VAR_ENDPOINT }}
     skip_credentials_validation = true
     skip_get_ec2_platforms      = true
     skip_requesting_account_id  = true
