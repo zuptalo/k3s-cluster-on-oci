@@ -40,8 +40,13 @@ variable "ssh_authorized_keys" {
   type        = list(string)
 }
 
-variable "pg_connection_str" {
-  description = "Connection string for Postgres Backend"
+variable "bucket_name" {
+  description = "The name of the bucket for 3s Backend"
+  type        = string
+}
+
+variable "endpoint" {
+  description = "The endpoint of the bucket for 3s Backend"
   type        = string
 }
 
