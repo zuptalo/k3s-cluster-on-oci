@@ -2,6 +2,11 @@ name: 'Terraform'
 
 on:
   workflow_dispatch:
+    inputs:
+      command:
+        description: 'The Terraform command to run (init/apply/destroy)'
+        required: true
+        default: 'apply'
 
 jobs:
   terraform:
