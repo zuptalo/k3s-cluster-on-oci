@@ -40,9 +40,12 @@ jobs:
       - name: Apply Terraform
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.command == 'apply'
         run: |
+          terraform init
           terraform plan -out .tfplan
           terraform apply -auto-approve
 
       - name: Destroy Terraform
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.command == 'destroy'
-        run: terraform destroy -auto-approve
+        run: |
+          terraform init
+          terraform destroy -auto-approve
