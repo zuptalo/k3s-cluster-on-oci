@@ -35,17 +35,17 @@ jobs:
 
       - name: Initialize Terraform
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.command == 'init'
-        run: terraform init
+        run: terraform init -var-file="variables.tf"
 
       - name: Apply Terraform
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.command == 'apply'
         run: |
           terraform init
-          terraform plan -out .tfplan
-          terraform apply -auto-approve
+          terraform plan -var-file="variables.tf" -out .tfplan
+          terraform apply -var-file="variables.tf" -auto-approve
 
       - name: Destroy Terraform
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.command == 'destroy'
         run: |
-          terraform init
-          terraform destroy -auto-approve
+          terraform init -var-file="variables.tf"
+          terraform destroy -var-file="variables.tf" -auto-approve
