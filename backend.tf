@@ -4,7 +4,7 @@ terraform {
     key            = "terraform.tfstate"
     region         = "se-stockholm-1"
     endpoint       = "s3.zuptalo.com"
-    access_key     = "${var.S3_ACCESS_KEY}"
-    secret_key     = "${var.S3_SECRET_KEY}"
+    access_key     = "r5K7SmnEqra4aOkn"
+    secret_key     = "SnBD7AXJZlhF22s8cmDoCYqCS0GHTIeQ"
   }
 }
