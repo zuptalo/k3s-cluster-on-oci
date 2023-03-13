@@ -49,3 +49,14 @@ locals {
   cidr_blocks            = ["10.0.0.0/24"]
   ssh_managemnet_network = "0.0.0.0/0"
 }
+
+variable "S3_ACCESS_KEY" {
+  description = "The Acccess Key for S3 Bucket."
+  type        = string
+}
+
+variable "S3_SECRET_KEY" {
+  description = "The Secret Key for S3 Bucket."
+  type        = string
+}
+
