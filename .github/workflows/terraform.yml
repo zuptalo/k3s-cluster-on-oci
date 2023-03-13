@@ -22,6 +22,8 @@ jobs:
       TF_VAR_ssh_authorized_keys: ${{ secrets.TF_VAR_SSH_AUTHORIZED_KEYS }}
       TF_VAR_bucket_name: ${{ secrets.TF_VAR_BUCKET_NAME }}
       TF_VAR_endpoint: ${{ secrets.TF_VAR_ENDPOINT }}
+      TF_VAR_S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
+      TF_VAR_S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
 
     steps:
       - name: Checkout
