@@ -1,5 +1,10 @@
 terraform {
-  backend "pg" {
-    conn_str = "postgres://pg.zuptalo.com:5433/terraform_state_db?user=terraform&password=Xman@1360&sslmode=disable"
+  backend "s3" {
+    bucket         = "terraform-state"
+    key            = "terraform.tfstate"
+    region         = "se-stockholm-1"
+    endpoint       = "s3.zuptalo.com"
+    access_key     = "${var.S3_ACCESS_KEY}"
+    secret_key     = "${var.S3_SECRET_KEY}"
   }
 }
